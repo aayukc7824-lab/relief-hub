@@ -161,21 +161,115 @@ a {
 }
 
 .main-content {
-  width: min(1060px, 100%);
+  width: min(1160px, 100%);
   flex: 1;
   margin: 0 auto;
-  padding: 38px 24px 58px;
+  padding: 38px 30px 58px;
 }
 
 .hero {
+  display: grid;
+  min-height: 410px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.8fr);
+  align-items: center;
+  gap: clamp(26px, 4vw, 54px);
   overflow: hidden;
-  padding: clamp(32px, 6vw, 62px);
+  padding: clamp(30px, 5.5vw, 60px);
+  border: 1px solid rgb(255 255 255 / 8%);
   border-radius: 22px;
   background:
-    radial-gradient(ellipse at 92% 6%, rgb(255 255 255 / 14%), transparent 40%),
-    linear-gradient(120deg, #8f2828 0%, #c63832 65%, #dc5542 100%);
+    radial-gradient(ellipse at 0% 100%, rgb(48 86 113 / 42%), transparent 46%),
+    linear-gradient(112deg, #111d30 0%, #20283a 53%, #3b171b 100%);
   color: #fff;
-  box-shadow: 0 16px 38px rgb(139 40 36 / 15%);
+  box-shadow: 0 18px 45px rgb(19 30 45 / 16%);
+}
+
+.hero-copy-block {
+  max-width: 620px;
+}
+
+.developer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 27px;
+  padding: 7px 12px;
+  border: 1px solid rgb(100 218 181 / 27%);
+  border-radius: 99px;
+  background: rgb(25 129 104 / 20%);
+  color: #83e5c2;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.fact-card {
+  display: flex;
+  min-height: 145px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 7%);
+  color: #fff;
+  text-decoration: none;
+}
+
+.fact-card-hotline {
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.fact-card-hotline:hover {
+  border-color: rgb(255 255 255 / 27%);
+  background: rgb(255 255 255 / 12%);
+}
+
+.fact-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  margin-bottom: 10px;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 10%);
+  color: #ffaaa2;
+}
+
+.fact-label {
+  margin-bottom: 5px;
+  color: #c4ccd5;
+  font-size: 11px;
+}
+
+.fact-card strong {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.fact-divider {
+  color: #ffaaa2;
+}
+
+.fact-note {
+  margin-top: 5px;
+  color: #aab5c0;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
 .eyebrow {
@@ -200,16 +294,16 @@ a {
 }
 
 .hero h2 {
-  max-width: 660px;
-  font-size: clamp(31px, 5vw, 48px);
-  line-height: 1.13;
+  max-width: 650px;
+  font-size: clamp(36px, 5vw, 57px);
+  line-height: 1.04;
 }
 
 .hero-copy {
-  max-width: 620px;
-  margin: 17px 0 25px;
-  color: #ffedeb;
-  font-size: 16px;
+  max-width: 610px;
+  margin: 20px 0 25px;
+  color: #d0d7e0;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -227,9 +321,23 @@ a {
   text-decoration: none;
 }
 
-.button-light {
-  background: #fff;
-  color: var(--red-dark);
+.button-alert {
+  background: #d92d2d;
+  color: #fff;
+}
+
+.button-alert:hover {
+  background: #be2525;
+}
+
+.button-outline {
+  border: 1px solid rgb(255 255 255 / 25%);
+  background: rgb(255 255 255 / 5%);
+  color: #fff;
+}
+
+.button-outline:hover {
+  background: rgb(255 255 255 / 12%);
 }
 
 .button-primary {
@@ -265,7 +373,7 @@ a {
 }
 
 .section {
-  margin-top: 44px;
+  margin-top: 38px;
 }
 
 .section-heading {
@@ -276,68 +384,80 @@ a {
 }
 
 .section-heading h2 {
-  font-size: 25px;
+  font-size: 26px;
 }
 
-.action-grid {
+.field-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
 }
 
-.action-card {
+.field-card {
   display: flex;
-  min-height: 215px;
+  min-height: 222px;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 21px;
+  align-items: stretch;
+  padding: 20px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 13px;
   background: #fff;
-  color: var(--ink);
-  text-align: left;
-  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+  box-shadow: 0 4px 15px rgb(31 45 56 / 3%);
 }
 
-.action-card:hover {
-  transform: translateY(-2px);
-  border-color: #e9b8b4;
-  box-shadow: 0 10px 24px rgb(31 45 56 / 8%);
+.field-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.action-icon {
+.field-icon {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   place-items: center;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #fff0ef;
   color: var(--red);
 }
 
-.action-title {
-  margin-top: 16px;
+.field-tag {
+  color: #77838d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.field-card h3 {
+  margin: 18px 0 7px;
   font-family: 'Segoe UI', Arial, sans-serif;
   font-size: 16px;
   font-weight: 800;
 }
 
-.action-description {
-  margin-top: 7px;
+.field-card p {
+  margin: 0 0 14px;
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-.action-link {
-  display: flex;
+.text-link {
+  display: inline-flex;
+  width: fit-content;
   align-items: center;
   gap: 6px;
   margin-top: auto;
-  padding-top: 15px;
+  padding: 8px 0 0;
+  border: 0;
+  background: transparent;
   color: var(--red-dark);
   font-size: 12px;
   font-weight: 700;
+}
+
+.text-link:hover {
+  color: #7d201e;
 }
 
 .information-card {
@@ -436,6 +556,22 @@ a {
     min-height: 70px;
   }
 
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy-block {
+    max-width: 700px;
+  }
+
+  .hero-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fact-card {
+    min-height: 150px;
+  }
+
   .menu-toggle {
     display: grid;
     width: 40px;
@@ -494,21 +630,55 @@ a {
   }
 
   .hero {
-    padding: 29px 22px;
+    gap: 25px;
+    padding: 27px 20px;
     border-radius: 16px;
+  }
+
+  .developer-badge {
+    margin-bottom: 22px;
+    font-size: 9px;
+    letter-spacing: 0.035em;
+  }
+
+  .hero h2 {
+    font-size: 37px;
   }
 
   .hero-copy {
     font-size: 14px;
   }
 
-  .action-grid {
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .fact-card {
+    min-height: 144px;
+    padding: 12px;
+  }
+
+  .fact-card strong {
+    font-size: 14px;
+  }
+
+  .field-grid {
     grid-template-columns: 1fr;
     gap: 11px;
   }
 
-  .action-card {
-    min-height: 190px;
+  .field-card {
+    min-height: 195px;
   }
 
   .information-card {

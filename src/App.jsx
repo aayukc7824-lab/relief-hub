@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import {
   AlertTriangle,
   ArrowRight,
+  Building2,
+  Code2,
+  FileWarning,
   HeartHandshake,
   LifeBuoy,
   MapPin,
@@ -14,25 +17,70 @@ import {
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard' },
-  { id: 'missing', label: 'Missing & reunification' },
-  { id: 'camps', label: 'Relief camps' },
-  { id: 'volunteer', label: 'Donate & volunteer' },
+  { id: 'missing', label: 'Missing & Reunification' },
+  { id: 'camps', label: 'Relief Camps' },
+  { id: 'volunteer', label: 'Donate & Volunteer' },
 ];
 
 function Dashboard({ onNavigate }) {
   return (
     <>
       <section className="hero">
-        <p className="eyebrow">RASUWA · NUWAKOT · DHADING</p>
-        <h2>Relief information, all in one place.</h2>
-        <p className="hero-copy">
-          Use this coordination hub to find emergency contacts and navigate
-          missing-person, shelter, and volunteer information.
-        </p>
-        <a className="button button-light" href="tel:100">
-          <Phone size={18} aria-hidden="true" />
-          Call Nepal Police: 100
-        </a>
+        <div className="hero-copy-block">
+          <p className="developer-badge">
+            <Code2 size={16} aria-hidden="true" />
+            Developed by Aayusha Khatiwada (B.Sc. CSIT Student)
+          </p>
+          <p className="eyebrow">RASUWA · NUWAKOT · DHADING</p>
+          <h2>Bhote Koshi River Basin Flood Recovery</h2>
+          <p className="hero-copy">
+            A community coordination hub with emergency contacts and guidance
+            for missing-person support, relief shelters, and volunteering.
+          </p>
+          <div className="hero-actions">
+            <button
+              className="button button-alert"
+              onClick={() => onNavigate('missing')}
+            >
+              <Users size={18} aria-hidden="true" />
+              Missing & reunification
+            </button>
+            <button
+              className="button button-outline"
+              onClick={() => onNavigate('camps')}
+            >
+              View relief camp guidance
+              <ArrowRight size={17} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+        <div className="hero-facts" aria-label="Portal information">
+          <div className="fact-card">
+            <span className="fact-icon"><MapPin size={18} aria-hidden="true" /></span>
+            <span className="fact-label">Coordination area</span>
+            <strong>Rasuwa, Nuwakot & Dhading</strong>
+            <span className="fact-note">Regional information hub</span>
+          </div>
+          <div className="fact-card">
+            <span className="fact-icon"><Building2 size={18} aria-hidden="true" /></span>
+            <span className="fact-label">Relief shelters</span>
+            <strong>Confirm locally</strong>
+            <span className="fact-note">No live camp directory connected</span>
+          </div>
+          <div className="fact-card">
+            <span className="fact-icon"><FileWarning size={18} aria-hidden="true" /></span>
+            <span className="fact-label">Reports & updates</span>
+            <strong>Not live</strong>
+            <span className="fact-note">This demo does not collect reports</span>
+          </div>
+          <a className="fact-card fact-card-hotline" href="tel:100">
+            <span className="fact-icon"><Phone size={18} aria-hidden="true" /></span>
+            <span className="fact-label">Emergency helplines</span>
+            <strong>100 <span className="fact-divider">/</span> 1114</strong>
+            <span className="fact-note">Nepal Police / Armed Police Force</span>
+          </a>
+        </div>
       </section>
 
       <section className="notice" aria-label="Important information">
@@ -47,45 +95,56 @@ function Dashboard({ onNavigate }) {
       <section className="section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">GET STARTED</p>
-            <h2>How can we help?</h2>
+            <p className="eyebrow">COORDINATION DESK</p>
+            <h2>Community support information</h2>
           </div>
         </div>
-        <div className="action-grid">
-          <ActionCard
-            icon={<Users size={22} aria-hidden="true" />}
-            title="Find someone"
-            description="View guidance for missing-person and reunification support."
-            onClick={() => onNavigate('missing')}
-          />
-          <ActionCard
-            icon={<MapPin size={22} aria-hidden="true" />}
-            title="Find relief"
-            description="Check shelter information and how to confirm availability."
-            onClick={() => onNavigate('camps')}
-          />
-          <ActionCard
-            icon={<HeartHandshake size={22} aria-hidden="true" />}
-            title="Offer help"
-            description="See how to connect with local volunteer coordination."
-            onClick={() => onNavigate('volunteer')}
-          />
+        <div className="field-grid">
+          <article className="field-card">
+            <div className="field-card-top">
+              <span className="field-icon"><Users size={19} aria-hidden="true" /></span>
+              <span className="field-tag">MISSING PERSONS</span>
+            </div>
+            <h3>Looking for someone?</h3>
+            <p>
+              This portal has no live registry. Contact police directly and
+              share identifying details with authorized responders.
+            </p>
+            <button className="text-link" onClick={() => onNavigate('missing')}>
+              Reunification guidance <ArrowRight size={15} aria-hidden="true" />
+            </button>
+          </article>
+          <article className="field-card">
+            <div className="field-card-top">
+              <span className="field-icon"><MapPin size={19} aria-hidden="true" /></span>
+              <span className="field-tag">SHELTER INFORMATION</span>
+            </div>
+            <h3>Confirm before travelling</h3>
+            <p>
+              Shelter locations and availability are not verified here. Check
+              with local authorities for current arrangements.
+            </p>
+            <button className="text-link" onClick={() => onNavigate('camps')}>
+              Relief camp guidance <ArrowRight size={15} aria-hidden="true" />
+            </button>
+          </article>
+          <article className="field-card">
+            <div className="field-card-top">
+              <span className="field-icon"><HeartHandshake size={19} aria-hidden="true" /></span>
+              <span className="field-tag">VOLUNTEERING</span>
+            </div>
+            <h3>Offer help safely</h3>
+            <p>
+              Volunteer offers are not collected here. Coordinate with
+              recognized local organizations and confirm needs first.
+            </p>
+            <button className="text-link" onClick={() => onNavigate('volunteer')}>
+              Ways to offer help <ArrowRight size={15} aria-hidden="true" />
+            </button>
+          </article>
         </div>
       </section>
     </>
-  );
-}
-
-function ActionCard({ icon, title, description, onClick }) {
-  return (
-    <button className="action-card" onClick={onClick}>
-      <span className="action-icon">{icon}</span>
-      <span className="action-title">{title}</span>
-      <span className="action-description">{description}</span>
-      <span className="action-link">
-        View information <ArrowRight size={16} aria-hidden="true" />
-      </span>
-    </button>
   );
 }
 
@@ -149,7 +208,9 @@ export default function App() {
     <div className="app-shell">
       <div className="emergency-banner">
         <AlertTriangle size={18} aria-hidden="true" />
-        <span>Flood response coordination · Bhote Koshi & Trishuli river basins</span>
+        <span>
+          CRISIS RESPONSE COORDINATION · BHOTE KOSHI & TRISHULI RIVER BASINS
+        </span>
       </div>
 
       <header className="site-header">
