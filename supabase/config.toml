@@ -1,0 +1,7 @@
+project_id = "relief-hub"
+
+[functions.submit-missing-report]
+verify_jwt = false
+
+[functions.submit-volunteer-offer]
+verify_jwt = false
