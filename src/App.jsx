@@ -29,8 +29,9 @@ function Dashboard({ onNavigate }) {
           <p className="eyebrow">RASUWA · NUWAKOT · DHADING</p>
           <h2>Bhote Koshi River Basin Flood Recovery</h2>
           <p className="hero-copy">
-            A community coordination hub with emergency contacts and guidance
-            for missing-person support, relief shelters, and volunteering.
+            A regional information hub for emergency contacts and guidance on
+            missing-person support, relief shelters, and volunteering. Live
+            incident, shelter, and registry data are not connected.
           </p>
           <div className="hero-actions">
             <button
@@ -38,61 +39,49 @@ function Dashboard({ onNavigate }) {
               onClick={() => onNavigate('missing')}
             >
               <Users size={18} aria-hidden="true" />
-              Missing & reunification
+              Missing-person guidance
             </button>
             <button
               className="button button-outline"
               onClick={() => onNavigate('camps')}
             >
-              View relief camp guidance
+              View relief camp information
               <ArrowRight size={17} aria-hidden="true" />
             </button>
           </div>
         </div>
-
-        <div className="hero-facts" aria-label="Portal information">
-          <div className="fact-card">
-            <span className="fact-icon"><MapPin size={18} aria-hidden="true" /></span>
-            <span className="fact-label">Coordination area</span>
-            <strong>Rasuwa, Nuwakot & Dhading</strong>
-            <span className="fact-note">Regional information hub</span>
-          </div>
-          <div className="fact-card">
-            <span className="fact-icon"><Building2 size={18} aria-hidden="true" /></span>
-            <span className="fact-label">Relief shelters</span>
-            <strong>Confirm locally</strong>
-            <span className="fact-note">No live camp directory connected</span>
-          </div>
-          <div className="fact-card">
-            <span className="fact-icon"><FileWarning size={18} aria-hidden="true" /></span>
-            <span className="fact-label">Reports & updates</span>
-            <strong>Not live</strong>
-            <span className="fact-note">This demo does not collect reports</span>
-          </div>
-          <a className="fact-card fact-card-hotline" href="tel:100">
-            <span className="fact-icon"><Phone size={18} aria-hidden="true" /></span>
-            <span className="fact-label">Emergency helplines</span>
-            <strong>100 <span className="fact-divider">/</span> 1114</strong>
-            <span className="fact-note">Nepal Police / Armed Police Force</span>
-          </a>
-        </div>
       </section>
 
-      <section className="notice" aria-label="Important information">
-        <AlertTriangle size={21} aria-hidden="true" />
-        <p>
-          <strong>In immediate danger?</strong> Call Nepal Police on 100 or the
-          Armed Police Force on 1114. This demo does not dispatch responders or
-          submit reports.
-        </p>
+      <section className="dashboard-stats" aria-label="Portal information">
+        <article className="stat-card">
+          <span className="stat-label">COORDINATION AREA</span>
+          <strong>3 districts</strong>
+          <span>Rasuwa · Nuwakot · Dhading</span>
+        </article>
+        <article className="stat-card">
+          <span className="stat-label">RELIEF SHELTERS</span>
+          <strong>Confirm locally</strong>
+          <span>No live shelter directory connected</span>
+        </article>
+        <article className="stat-card">
+          <span className="stat-label">REPORTS &amp; UPDATES</span>
+          <strong>Not connected</strong>
+          <span>This demo does not collect reports</span>
+        </article>
+        <a className="stat-card stat-card-hotline" href="tel:100">
+          <span className="stat-label">EMERGENCY HELPLINES</span>
+          <strong>100 <span>/</span> 1114</strong>
+          <span>Nepal Police / Armed Police Force</span>
+        </a>
       </section>
 
       <section className="section">
         <div className="section-heading">
           <div>
             <p className="eyebrow">COORDINATION DESK</p>
-            <h2>Community support information</h2>
+            <h2>Response &amp; safety guidance</h2>
           </div>
+          <span className="section-note">No live field reports are available</span>
         </div>
         <div className="field-grid">
           <article className="field-card">
@@ -150,46 +139,41 @@ function ReliefCampView() {
     <section className="camp-page">
       <div className="camp-heading">
         <p className="eyebrow">SHELTER INFORMATION</p>
-        <h2>Relief Camp Status &amp; Occupancy</h2>
+        <h2>Relief Camp Status &amp; Occupancy Tracker</h2>
         <p>
-          Live camp locations, capacity, and supply levels are not connected to
-          this demo. Confirm current arrangements with local authorities before
-          travelling.
+          Live capacity metrics and supply levels are not connected to this
+          demo. Confirm current shelter arrangements with local authorities
+          before travelling.
         </p>
       </div>
 
       <div className="camp-grid">
         {districts.map((district) => (
           <article className="camp-card" key={district}>
-            <div className="camp-card-heading">
-              <span className="camp-icon">
-                <Building2 size={21} aria-hidden="true" />
-              </span>
-              <span className="district-badge">{district}</span>
-            </div>
             <h3>{district} shelter information</h3>
+            <span className="district-badge">{district}</span>
             <div className="camp-detail">
               <span>
                 <Users size={16} aria-hidden="true" />
-                Occupancy &amp; capacity
+                Shelter capacity
               </span>
               <strong>Not available</strong>
             </div>
             <div className="camp-detail">
               <span>
-                <MapPin size={16} aria-hidden="true" />
+                <Building2 size={16} aria-hidden="true" />
                 Locations &amp; supplies
               </span>
               <strong>Confirm locally</strong>
             </div>
             <p className="camp-status">
               <AlertTriangle size={16} aria-hidden="true" />
-              No verified live shelter data
+              Status not verified
             </p>
-            <a className="camp-contact" href="tel:100">
-              <Phone size={15} aria-hidden="true" />
-              Call Nepal Police: 100
-            </a>
+            <div className="camp-coordinator">
+              <strong>Before travelling:</strong>
+              <span>Check current arrangements with local authorities.</span>
+            </div>
           </article>
         ))}
       </div>
@@ -201,40 +185,15 @@ function InformationView({ section }) {
   const content = {
     missing: {
       eyebrow: 'MISSING & REUNIFICATION',
-      title: 'Missing person support',
+      title: 'Family Reunification & Missing Persons Registry',
       intro:
-        'This demo has no official missing-person registry and cannot receive or distribute reports. Contact authorized responders directly.',
-      cards: [
-        {
-          icon: <Phone size={21} aria-hidden="true" />,
-          label: 'EMERGENCY CONTACT',
-          title: 'Contact Nepal Police',
-          description:
-            'If someone is in immediate danger or missing, contact Nepal Police directly at 100.',
-          action: 'Call Nepal Police: 100',
-          href: 'tel:100',
-        },
-        {
-          icon: <Users size={21} aria-hidden="true" />,
-          label: 'DETAILS TO PREPARE',
-          title: 'Share clear information',
-          description:
-            'Be ready to provide the person’s name and description, last known location and time, and a safe way for responders to reach you.',
-        },
-        {
-          icon: <ShieldAlert size={21} aria-hidden="true" />,
-          label: 'PRIVACY & SAFETY',
-          title: 'Protect personal details',
-          description:
-            'Share identifying information directly with authorized responders. Avoid posting private details publicly.',
-        },
-      ],
+        'This demonstration does not store or search missing-person reports. Contact authorized responders directly to share information.',
     },
     volunteer: {
       eyebrow: 'DONATE & VOLUNTEER',
-      title: 'Offer help safely',
+      title: 'Volunteer & Relief Contribution Portal',
       intro:
-        'This demo does not collect donations or volunteer registrations. Confirm needs and safe arrangements with local authorities or recognized relief organizations.',
+        'This demo does not accept volunteer registrations or donations. Coordinate offers through local authorities or recognized relief organizations.',
       cards: [
         {
           icon: <ShieldAlert size={21} aria-hidden="true" />,
@@ -262,6 +221,56 @@ function InformationView({ section }) {
       ],
     },
   }[section];
+
+  if (section === 'missing') {
+    return (
+      <section className="camp-page registry-page">
+        <div className="registry-heading">
+          <div className="camp-heading">
+            <p className="eyebrow">{content.eyebrow}</p>
+            <h2>{content.title}</h2>
+            <p>{content.intro}</p>
+          </div>
+          <a className="button button-primary" href="tel:100">
+            <Phone size={17} aria-hidden="true" />
+            Contact Nepal Police: 100
+          </a>
+        </div>
+        <div className="registry-search" aria-label="Registry unavailable">
+          <FileWarning size={19} aria-hidden="true" />
+          <span>No searchable registry is connected to this demonstration.</span>
+        </div>
+        <div className="registry-table-wrap">
+          <table className="registry-table">
+            <thead>
+              <tr>
+                <th scope="col">FULL NAME</th>
+                <th scope="col">AGE</th>
+                <th scope="col">LAST KNOWN LOCATION</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">CONTACT PERSON</th>
+                <th scope="col">REPORTED</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colSpan="6">
+                  <div className="registry-empty">
+                    <Users size={24} aria-hidden="true" />
+                    <strong>No reports are stored here</strong>
+                    <span>
+                      For help, share details directly with authorized
+                      responders. Avoid posting private information publicly.
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="camp-page resource-page">
@@ -307,7 +316,7 @@ export default function App() {
       <div className="emergency-banner">
         <AlertTriangle size={18} aria-hidden="true" />
         <span>
-          CRISIS RESPONSE COORDINATION · BHOTE KOSHI & TRISHULI RIVER BASINS
+          CRISIS RESPONSE INFORMATION PORTAL · BHOTE KOSHI &amp; TRISHULI RIVER BASINS
         </span>
       </div>
 
@@ -335,11 +344,6 @@ export default function App() {
               </button>
             ))}
           </nav>
-
-          <a className="hotline" href="tel:100">
-            <Phone size={16} aria-hidden="true" />
-            Emergency: 100
-          </a>
 
           <button
             className="menu-toggle"
