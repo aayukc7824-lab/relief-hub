@@ -1,87 +1,45 @@
-<p align="center">
-  <a href="https://github.com/lucide-icons/lucide">
-    <img src="https://lucide.dev/package-logos/lucide-react.svg" alt="Lucide icon library for React applications." width="540">
-  </a>
-</p>
+# BhoteKoshi Relief Hub
 
-<p align="center">
-Lucide icon library for React applications.
-</p>
+A responsive demonstration portal for flood-relief coordination in the Rasuwa,
+Nuwakot, and Dhading areas. It provides emergency contact links and navigation
+to information about reunification, relief camps, and volunteering.
 
-<div align="center">
+## Requirements
 
-  [![npm](https://img.shields.io/npm/v/lucide-react?color=blue)](https://www.npmjs.com/package/lucide-react)
-  ![NPM Downloads](https://img.shields.io/npm/dw/lucide-react)
-  [![License](https://img.shields.io/badge/license-ISC-green)](https://lucide.dev/license)
-</div>
+- Node.js 18 or newer
+- npm
 
-<p align="center">
-  <a href="https://lucide.dev/guide/">About</a>
-  ·
-  <a href="https://lucide.dev/icons/">Icons</a>
-  ·
-  <a href="https://lucide.dev/guide/react">Documentation</a>
-  ·
-  <a href="https://lucide.dev/license">License</a>
-</p>
+## Run locally
 
-# Lucide React
-
-Implementation of the Lucide icon library for React applications.
-
-## Installation
+From the project root, install the dependencies and start the development
+server:
 
 ```sh
-pnpm add lucide-react
+npm install
+npm run dev
 ```
+
+Open the local URL printed by Vite. To create and preview a production build:
 
 ```sh
-npm install lucide-react
+npm run build
+npm run preview
 ```
 
-```sh
-yarn add lucide-react
-```
+## Publish with GitHub Pages
 
-```sh
-bun add lucide-react
-```
+The deployment workflow publishes the site from the `main` branch. After the
+first successful GitHub Actions deployment, visit:
 
-## Documentation
+<https://aayukc7824-lab.github.io/relief-hub/>
 
-For full documentation, visit [lucide.dev](https://lucide.dev/guide/packages/lucide-react)
+The repository is configured for GitHub Pages' project-site URL. Allow a few
+minutes for the first deployment to finish and become available.
 
-## Community
+## Important limitations
 
-Join the [Discord server](https://discord.gg/EH6nSts) to chat with the maintainers and other users.
-
-## License
-
-Lucide is licensed under the ISC license. See [LICENSE](https://lucide.dev/license).
-
-[//]: <> (Sponsors)
-
-## Sponsors
-
-<a href="https://vercel.com?utm_source=lucide&utm_campaign=oss">
-  <img src="https://lucide.dev/vercel.svg" alt="Powered by Vercel" width="200" />
-</a>
-
-<a href="https://www.digitalocean.com/?refcode=b0877a2caebd&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://lucide.dev/digitalocean.svg" width="200" alt="DigitalOcean Referral Badge" /></a>
-
-### Hero backers 🦸
-
-<a href="https://zephyr-cloud.io/"><img src="https://lucide.dev/sponsors/zephyr-cloud.svg" width="180" alt="Zephyr Cloud – From idea to prod: fast micro-frontend delivery!" /></a>
-
-### Awesome backers 🍺
-
-<a href="https://github.com/pdfme/pdfme"><img src="https://lucide.dev/sponsors/pdfme.svg" width="180" alt="pdfme – Open-source PDF generation library built with TypeScript and React." /></a>
-<a href="https://www.paxhistoria.co/"><img src="https://lucide.dev/sponsors/paxhistoria.svg?" width="180" alt="Pax Historia – An alternate history sandbox game" /></a>
-
-### Backers ☕
-
-<a href="https://www.fina.money/"><img src="https://lucide.dev/sponsors/fina-money.png" width="180" alt="Fina Money – Modular Finance Tracker" /></a>
-
-### Other contributors 💸
-
-You can find all our past and non-recurring financial contributors at [our Open Collective page](https://opencollective.com/lucide-icons).
+This is a student/demo project, not an official emergency service. It does not
+provide live incident updates, verified shelter locations, a missing-person
+registry, dispatch, or report submission. For emergencies in Nepal, call Nepal
+Police on **100** or the Armed Police Force on **1149**. Verify information
+with local authorities before travelling or donating.
