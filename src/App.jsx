@@ -143,48 +143,151 @@ function Dashboard({ onNavigate }) {
   );
 }
 
+function ReliefCampView() {
+  const districts = ['Rasuwa', 'Nuwakot', 'Dhading'];
+
+  return (
+    <section className="camp-page">
+      <div className="camp-heading">
+        <p className="eyebrow">SHELTER INFORMATION</p>
+        <h2>Relief Camp Status &amp; Occupancy</h2>
+        <p>
+          Live camp locations, capacity, and supply levels are not connected to
+          this demo. Confirm current arrangements with local authorities before
+          travelling.
+        </p>
+      </div>
+
+      <div className="camp-grid">
+        {districts.map((district) => (
+          <article className="camp-card" key={district}>
+            <div className="camp-card-heading">
+              <span className="camp-icon">
+                <Building2 size={21} aria-hidden="true" />
+              </span>
+              <span className="district-badge">{district}</span>
+            </div>
+            <h3>{district} shelter information</h3>
+            <div className="camp-detail">
+              <span>
+                <Users size={16} aria-hidden="true" />
+                Occupancy &amp; capacity
+              </span>
+              <strong>Not available</strong>
+            </div>
+            <div className="camp-detail">
+              <span>
+                <MapPin size={16} aria-hidden="true" />
+                Locations &amp; supplies
+              </span>
+              <strong>Confirm locally</strong>
+            </div>
+            <p className="camp-status">
+              <AlertTriangle size={16} aria-hidden="true" />
+              No verified live shelter data
+            </p>
+            <a className="camp-contact" href="tel:100">
+              <Phone size={15} aria-hidden="true" />
+              Call Nepal Police: 100
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function InformationView({ section }) {
   const content = {
     missing: {
-      icon: <Users size={24} aria-hidden="true" />,
       eyebrow: 'MISSING & REUNIFICATION',
-      title: 'Help find and reconnect with loved ones.',
-      message:
-        'This demo is not connected to an official missing-person registry and cannot accept or share reports.',
-      action: 'If someone is missing or in immediate danger, contact Nepal Police on 100. Share identifying information directly with authorized responders.',
-    },
-    camps: {
-      icon: <MapPin size={24} aria-hidden="true" />,
-      eyebrow: 'RELIEF CAMPS',
-      title: 'Confirm shelter information before travelling.',
-      message:
-        'There is no verified live shelter directory connected to this demo, so camp locations and capacity cannot be confirmed here.',
-      action: 'For urgent assistance, call Nepal Police on 100 or the Armed Police Force on 1114 and ask for current local arrangements.',
+      title: 'Missing person support',
+      intro:
+        'This demo has no official missing-person registry and cannot receive or distribute reports. Contact authorized responders directly.',
+      cards: [
+        {
+          icon: <Phone size={21} aria-hidden="true" />,
+          label: 'EMERGENCY CONTACT',
+          title: 'Contact Nepal Police',
+          description:
+            'If someone is in immediate danger or missing, contact Nepal Police directly at 100.',
+          action: 'Call Nepal Police: 100',
+          href: 'tel:100',
+        },
+        {
+          icon: <Users size={21} aria-hidden="true" />,
+          label: 'DETAILS TO PREPARE',
+          title: 'Share clear information',
+          description:
+            'Be ready to provide the person’s name and description, last known location and time, and a safe way for responders to reach you.',
+        },
+        {
+          icon: <ShieldAlert size={21} aria-hidden="true" />,
+          label: 'PRIVACY & SAFETY',
+          title: 'Protect personal details',
+          description:
+            'Share identifying information directly with authorized responders. Avoid posting private details publicly.',
+        },
+      ],
     },
     volunteer: {
-      icon: <HeartHandshake size={24} aria-hidden="true" />,
       eyebrow: 'DONATE & VOLUNTEER',
-      title: 'Coordinate help through trusted local organizations.',
-      message:
-        'Volunteer offers and donations are not collected by this demo.',
-      action: 'Contact established local authorities or recognized relief organizations directly to confirm current needs and safe ways to help.',
+      title: 'Offer help safely',
+      intro:
+        'This demo does not collect donations or volunteer registrations. Confirm needs and safe arrangements with local authorities or recognized relief organizations.',
+      cards: [
+        {
+          icon: <ShieldAlert size={21} aria-hidden="true" />,
+          label: 'CONFIRM NEEDS',
+          title: 'Check before donating',
+          description:
+            'Ask an established local authority or recognized relief organization what supplies are currently needed and where to deliver them.',
+        },
+        {
+          icon: <HeartHandshake size={21} aria-hidden="true" />,
+          label: 'TRUSTED ORGANIZATIONS',
+          title: 'Use verified channels',
+          description:
+            'Donate through organizations whose identity and relief work you can verify. Be cautious with unsolicited payment requests.',
+        },
+        {
+          icon: <AlertTriangle size={21} aria-hidden="true" />,
+          label: 'VOLUNTEER SAFELY',
+          title: 'Follow local guidance',
+          description:
+            'Do not enter flood-affected areas without authorization, training, and current safety guidance from local responders.',
+          action: 'Emergency: Nepal Police 100',
+          href: 'tel:100',
+        },
+      ],
     },
   }[section];
 
   return (
-    <section className="information-card">
-      <span className="information-icon">{content.icon}</span>
-      <p className="eyebrow">{content.eyebrow}</p>
-      <h2>{content.title}</h2>
-      <p className="information-message">{content.message}</p>
-      <div className="information-guidance">
-        <ShieldAlert size={20} aria-hidden="true" />
-        <p>{content.action}</p>
+    <section className="camp-page resource-page">
+      <div className="camp-heading">
+        <p className="eyebrow">{content.eyebrow}</p>
+        <h2>{content.title}</h2>
+        <p>{content.intro}</p>
       </div>
-      <a className="button button-primary" href="tel:100">
-        <Phone size={18} aria-hidden="true" />
-        Call Nepal Police: 100
-      </a>
+      <div className="camp-grid resource-grid">
+        {content.cards.map((card) => (
+          <article className="camp-card resource-card" key={card.label}>
+            <div className="camp-card-heading">
+              <span className="camp-icon">{card.icon}</span>
+              <span className="district-badge">{card.label}</span>
+            </div>
+            <h3>{card.title}</h3>
+            <p className="resource-description">{card.description}</p>
+            {card.href && (
+              <a className="camp-contact" href={card.href}>
+                <Phone size={15} aria-hidden="true" />
+                {card.action}
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
@@ -266,6 +369,8 @@ export default function App() {
       <main className="main-content">
         {activeTab === 'dashboard' ? (
           <Dashboard onNavigate={navigate} />
+        ) : activeTab === 'camps' ? (
+          <ReliefCampView />
         ) : (
           <InformationView section={activeTab} />
         )}
