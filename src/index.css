@@ -72,14 +72,15 @@ a {
   min-height: 76px;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
+  gap: 14px;
   margin: 0 auto;
   padding: 10px 24px;
 }
 
 .brand {
   display: flex;
-  min-width: max-content;
+  min-width: 0;
+  flex: 0 0 auto;
   align-items: center;
   gap: 11px;
   padding: 0;
@@ -124,6 +125,12 @@ a {
   gap: 3px;
 }
 
+.desktop-nav {
+  min-width: 0;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
 .nav-link {
   padding: 10px 12px;
   border: 0;
@@ -132,6 +139,10 @@ a {
   color: #53606b;
   font-size: 13px;
   font-weight: 600;
+}
+
+.desktop-nav .nav-link {
+  white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -155,7 +166,10 @@ a {
   text-decoration: none;
 }
 
-.menu-toggle,
+.menu-toggle {
+  display: none;
+}
+
 .mobile-nav {
   display: none;
 }
@@ -186,22 +200,6 @@ a {
 
 .hero-copy-block {
   max-width: 620px;
-}
-
-.developer-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 27px;
-  padding: 7px 12px;
-  border: 1px solid rgb(100 218 181 / 27%);
-  border-radius: 99px;
-  background: rgb(25 129 104 / 20%);
-  color: #83e5c2;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
 }
 
 .hero-actions {
@@ -547,9 +545,36 @@ a {
   font-weight: 600;
 }
 
+@media (max-width: 1050px) {
+  .header-inner {
+    gap: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .desktop-nav {
+    gap: 0;
+  }
+
+  .desktop-nav .nav-link {
+    padding: 8px 7px;
+    font-size: 11px;
+  }
+
+  .hotline {
+    gap: 5px;
+    padding: 8px 9px;
+    font-size: 10px;
+  }
+}
+
 @media (max-width: 920px) {
   .desktop-nav {
     display: none;
+  }
+
+  .hotline {
+    margin-left: auto;
   }
 
   .header-inner {
@@ -633,12 +658,6 @@ a {
     gap: 25px;
     padding: 27px 20px;
     border-radius: 16px;
-  }
-
-  .developer-badge {
-    margin-bottom: 22px;
-    font-size: 9px;
-    letter-spacing: 0.035em;
   }
 
   .hero h2 {

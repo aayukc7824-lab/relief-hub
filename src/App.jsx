@@ -3,7 +3,6 @@ import {
   AlertTriangle,
   ArrowRight,
   Building2,
-  Code2,
   FileWarning,
   HeartHandshake,
   LifeBuoy,
@@ -27,10 +26,6 @@ function Dashboard({ onNavigate }) {
     <>
       <section className="hero">
         <div className="hero-copy-block">
-          <p className="developer-badge">
-            <Code2 size={16} aria-hidden="true" />
-            Developed by Aayusha Khatiwada (B.Sc. CSIT Student)
-          </p>
           <p className="eyebrow">RASUWA · NUWAKOT · DHADING</p>
           <h2>Bhote Koshi River Basin Flood Recovery</h2>
           <p className="hero-copy">
