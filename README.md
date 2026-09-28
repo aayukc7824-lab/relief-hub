@@ -41,5 +41,5 @@ minutes for the first deployment to finish and become available.
 This is a student/demo project, not an official emergency service. It does not
 provide live incident updates, verified shelter locations, a missing-person
 registry, dispatch, or report submission. For emergencies in Nepal, call Nepal
-Police on **100** or the Armed Police Force on **1149**. Verify information
+Police on **100** or the Armed Police Force on **1114**. Verify information
 with local authorities before travelling or donating.

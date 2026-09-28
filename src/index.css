@@ -420,6 +420,13 @@ a {
   font-weight: 700;
 }
 
+.site-footer .developer-credit {
+  flex-basis: 100%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 @media (max-width: 920px) {
   .desktop-nav {
     display: none;

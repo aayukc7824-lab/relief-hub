@@ -39,7 +39,7 @@ function Dashboard({ onNavigate }) {
         <AlertTriangle size={21} aria-hidden="true" />
         <p>
           <strong>In immediate danger?</strong> Call Nepal Police on 100 or the
-          Armed Police Force on 1149. This demo does not dispatch responders or
+          Armed Police Force on 1114. This demo does not dispatch responders or
           submit reports.
         </p>
       </section>
@@ -105,7 +105,7 @@ function InformationView({ section }) {
       title: 'Confirm shelter information before travelling.',
       message:
         'There is no verified live shelter directory connected to this demo, so camp locations and capacity cannot be confirmed here.',
-      action: 'For urgent assistance, call Nepal Police on 100 or the Armed Police Force on 1149 and ask for current local arrangements.',
+      action: 'For urgent assistance, call Nepal Police on 100 or the Armed Police Force on 1114 and ask for current local arrangements.',
     },
     volunteer: {
       icon: <HeartHandshake size={24} aria-hidden="true" />,
@@ -221,7 +221,10 @@ export default function App() {
           This is a demonstration portal. Information is not live, and reports
           are not submitted or monitored.
         </p>
-        <a href="tel:1149">Armed Police Force: 1149</a>
+        <a href="tel:1114">Armed Police Force: 1114</a>
+        <p className="developer-credit">
+          Developed by Aayusha Khatiwada (B.Sc. CSIT Student)
+        </p>
       </footer>
     </div>
   );
