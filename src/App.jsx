@@ -227,9 +227,6 @@ export default function App() {
         <button className="footer-admin-link" onClick={() => navigate('admin')}>
           Staff sign-in
         </button>
-        <p className="developer-credit">
-          Developed by Aayusha Khatiwada (B.Sc. CSIT Student)
-        </p>
       </footer>
     </div>
   );
