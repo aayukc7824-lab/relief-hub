@@ -290,3 +290,39 @@ body.dark-theme {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+@media print {
+  @page { size: A4; margin: 13mm 14mm; }
+  :root { color-scheme: light; --ink: #242039; --muted: #5f5d6c; --line: #dedbe5; --surface: #fff; --background: #fff; }
+  html, body { width: auto; min-width: 0; background: #fff !important; color: #242039 !important; font-size: 9pt; }
+  html { scroll-behavior: auto; }
+  .site-header, .skip-link, .scroll-cue, .hero-art, .hero-actions, .theme-toggle, .site-footer .back-to-top { display: none !important; }
+  .section-wrap { width: 100%; }
+  .hero { min-height: 0; grid-template-columns: 1fr; gap: 0; padding: 0 0 5mm; }
+  .hero-copy, .reveal { opacity: 1 !important; transform: none !important; }
+  .hero h1 { font-size: 30pt; letter-spacing: -1.5pt; }
+  .hero-intro { max-width: none; margin: 4mm 0; font-size: 10pt; line-height: 1.5; }
+  .hero-socials { margin-top: 3mm; }
+  .about-section, .education-section, .skills-section, .projects-section { padding-block: 5mm; }
+  .section-heading { margin-bottom: 4mm; }
+  .section-heading h2, .contact-inner h2 { font-size: 21pt; }
+  .about-grid { grid-template-columns: 1.2fr .8fr; gap: 5mm; }
+  .surface { box-shadow: none; break-inside: avoid; }
+  .about-card, .fact-card, .education-card, .skill-card, .project-content { padding: 4mm; }
+  .about-card p, .fact-card p, .education-copy p, .section-note, .skill-card p, .project-content > p { font-size: 8.5pt; line-height: 1.45; }
+  .about-side { gap: 2mm; }
+  .education-card { min-height: 0; }
+  .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .skill-card p { min-height: 0; }
+  .projects-grid { grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .project-visual { min-height: 34mm; }
+  .project-content > p { min-height: 0; }
+  .project-content h3 { font-size: 12pt; }
+  .tag-list { gap: 1.5mm; }
+  .tag-list li { padding: 1mm 2mm; font-size: 7pt; }
+  .contact-inner { min-height: 0; padding: 7mm; box-shadow: none; }
+  .contact-inner > div:first-child > p:last-child { font-size: 9pt; }
+  .contact-actions { gap: 4mm; }
+  .site-footer { min-height: 0; padding: 4mm 0 0; }
+  a { color: inherit; }
+}

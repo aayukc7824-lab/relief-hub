@@ -65,8 +65,11 @@ npm run preview
 
 A separate static developer portfolio is available in [`portfolio/`](./portfolio/).
 While the Vite development server is running, open
-`http://localhost:5173/portfolio/` to preview it. The production build includes
-it at `/relief-hub/portfolio/` on GitHub Pages. The private editor is at
+`http://localhost:5173/relief-hub/portfolio/` to preview it and use its
+**Download portfolio PDF** button. The PDF is also available at
+[`public/portfolio.pdf`](./public/portfolio.pdf) and will be served as
+`/relief-hub/portfolio.pdf` after deployment. The production portfolio is at
+`/relief-hub/portfolio/` on GitHub Pages. The private editor is at
 `/relief-hub/portfolio/admin/`; only accounts explicitly added to
 `public.portfolio_admin_users` can publish edits. When Supabase is configured,
 visitors receive portfolio updates in real time. Without it, the portfolio
