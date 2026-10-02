@@ -8,15 +8,15 @@
 ## ✅ Configured Components
 
 ### Supabase Project
-- **Project:** BhoteKoshi Relief Hub  
-- **Reference:** `jqcwwpnlpmwxijahegia`  
-- **Region:** ap-northeast-1 (Tokyo)  
-- **Database:** PostgreSQL 17.11.0.002  
+- **Project:** BhoteKoshi Relief Hub
+- **Reference:** `jqcwwpnlpmwxijahegia`
+- **Region:** ap-northeast-1 (Tokyo)
+- **Database:** PostgreSQL 17.11.0.002
 - **Status:** Active and healthy
 - **Migration history:** All three repository migrations are recorded as applied. The remote schema already existed and was verified before its migration ledger was reconciled; no schema migration was re-executed.
 
 ### Authentication (Auth)
-- **Public user sign-ups:** ❌ **Disabled**  
+- **Public user sign-ups:** ❌ **Disabled**
 - **Staff authorization:** No Relief Hub admin account has been authorized yet. Add an existing `auth.users.id` to `public.admin_users` only after confirming the person is trusted.
 - **Automatic session management:** Configured
 
@@ -66,7 +66,7 @@ All three required server-side secrets are configured and masked:
 ### Online Submission Forms
 ✅ **Functions deployed** | ❌ **Forms disabled for end-users**
 
-The web forms explicitly show:  
+The web forms explicitly show:
 > "Online reports and volunteer offers are disabled until secure setup and testing are complete."
 
 **Why:** To prevent accidental live intake before staff review processes are in place.
