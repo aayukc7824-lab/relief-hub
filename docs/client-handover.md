@@ -7,7 +7,7 @@
 | Prepared | 2 October 2026 |
 | Submitted to | `[Client or company name]` |
 | Prepared by | `[Name / team]` |
-| Release status | Review-ready prototype; production activation pending |
+| Release status | Updated review build published; online intake disabled |
 
 ## Executive summary
 
@@ -18,20 +18,21 @@ information, volunteer offers, and a restricted staff console into one
 interface.
 
 The current delivery is suitable for stakeholder review and a controlled
-demonstration. It is **not ready for live operational use**: the online
-submission backend and abuse protection have not been connected and tested.
-The portal is not affiliated with government agencies and is not an emergency
-dispatch service.
+demonstration. Supabase schema and submission functions are configured, but the
+end-to-end Turnstile submission test has not passed and no Relief Hub admin
+account has been authorized. Online report and volunteer intake therefore
+remain **disabled**. The portal is not affiliated with government agencies and
+is not an emergency dispatch service.
 
 ## Scope delivered
 
 | Area | Delivered behavior | Current availability |
 | --- | --- | --- |
 | Operations overview | Regional service overview, readiness indicators, emergency contacts, service navigation, and a transparent review workflow | Available |
-| Missing-person support | Safety guidance, consent-aware report form, and a public-notice area designed for administrator verification | Form disabled pending backend setup |
-| Shelter information | Interface for displaying recently verified shelter records and their verification timestamps | Live records unavailable pending backend setup |
-| Volunteer and supply offers | Private offer form design with guidance against unverified deployments and payments | Form disabled pending backend setup |
-| Staff console | Restricted sign-in and tools for reviewing reports and offers, managing shelter records, and publishing eligible notices | Sign-in unavailable pending backend setup |
+| Missing-person support | Safety guidance, consent-aware report form, and a public-notice area designed for administrator verification | Form disabled pending successful acceptance testing and staff authorization |
+| Shelter information | Interface for displaying recently verified shelter records and their verification timestamps | No public records currently available |
+| Volunteer and supply offers | Private offer form with guidance against unverified deployments and payments | Form disabled pending successful acceptance testing and staff authorization |
+| Staff console | Restricted sign-in and tools for reviewing reports and offers, managing shelter records, and publishing eligible notices | No Relief Hub admin account authorized |
 
 The interface does not include payment processing, emergency dispatch, field
 team tracking, or an operational case-management service.
@@ -46,24 +47,25 @@ are included.
 ## Technical delivery
 
 - Front end: React 18, Vite 6, JavaScript, and responsive CSS.
-- Data and staff authentication: Supabase project configuration, migrations,
-  row-level security, and Edge Functions are prepared in the repository.
-- Submission abuse protection: Cloudflare Turnstile integration is prepared.
+- Data and staff authentication: Supabase schema, migrations, row-level
+  security, and Edge Functions are configured for the current project.
+- Submission abuse protection: Cloudflare Turnstile is integrated, but its
+  end-to-end verification has not yet passed.
 - Public hosting: GitHub Pages.
 - Source repository:
   [aayukc7824-lab/relief-hub](https://github.com/aayukc7824-lab/relief-hub)
 - Public site:
   [aayukc7824-lab.github.io/relief-hub](https://aayukc7824-lab.github.io/relief-hub/)
 
-The local production build completed successfully with `npm run build`. The
-overview, case-reporting entry point, and unconfigured staff-console state were
-checked in a local browser. This verifies the front-end build and navigation;
-it does not verify a live database, Edge Functions, authentication, or report
-delivery.
+The production build completed successfully with `npm run build`, and the
+updated site is published through GitHub Actions. The live overview, case
+reporting entry point, and disabled-intake state were checked in a browser.
+This verifies the front-end build and deployment; it does not verify successful
+Turnstile verification, authenticated staff access, or report delivery.
 
-The GitHub Pages URL is published, but the current local changes still need to
-be released to that site. Do not treat the hosted page as the latest approved
-handover build until the updated deployment has been published and checked.
+The live page currently shows **Setup required** and **Live updates are not
+connected**. This is an intentional safe state while intake is disabled and
+public database reads have not been enabled in the site build.
 
 ## Privacy, safety, and operational controls
 
@@ -84,25 +86,25 @@ handover build until the updated deployment has been published and checked.
 
 ## Items required before production handover
 
-1. Provision a client-owned Supabase project and Cloudflare Turnstile site.
-2. Apply the database migrations in filename order and verify row-level
-   security policies, including the public-safe `missing_persons` view.
-3. Deploy both submission Edge Functions and configure their server-side
-   secrets in Supabase. Never put service-role, Turnstile secret, or
-   rate-limit secret values in the browser or repository.
-4. Set the frontend environment variables in the deployment workflow. Set
-   `VITE_BACKEND_READY=true` only after all integrations and acceptance tests
-   pass.
+1. Decide whether to transfer the current configuration or provision a
+   client-owned Supabase project and Cloudflare Turnstile site.
+2. For a new project, apply the database migrations in filename order and
+   verify row-level security policies, including the public-safe
+   `missing_persons` view.
+3. For a new project, deploy both submission Edge Functions and configure
+   their server-side secrets in Supabase. Never put service-role, Turnstile
+   secret, or rate-limit secret values in the browser or repository.
+4. Complete successful missing-report and volunteer-offer tests, including
+   Turnstile verification, database delivery, rate limiting, and staff review.
 5. Invite named staff accounts, disable public sign-ups, and grant the
    administrator role to authorized users only.
-6. Run end-to-end tests for report intake, volunteer offers, administrator
-   review, status changes, consent checks, public notice publication, shelter
-   verification, and expired/unpublished records.
+6. Run acceptance tests for status changes, consent checks, public notice
+   publication, shelter verification, and expired/unpublished records.
 7. Have the client approve emergency contacts, data ownership, privacy and
    retention wording, incident escalation procedures, and operational
    responsibility.
-8. Publish the approved build and complete production smoke tests on the
-   client-approved domain.
+8. Only after written approval, update the GitHub Pages workflow release gate
+   and complete production smoke tests on the client-approved domain.
 
 ## Review and acceptance checklist
 

@@ -1,7 +1,7 @@
 # BhoteKoshi Relief Hub — Backend Configuration Status
 
 **Last Updated:** 2026-10-02
-**Status:** ✅ Secure setup complete; **submissions remain disabled pending authorization**
+**Status:** Backend infrastructure is configured; **submissions remain disabled pending successful acceptance testing and staff authorization**
 
 ---
 
@@ -57,7 +57,8 @@ All three required server-side secrets are configured and masked:
 - **`.env` file:** Git-ignored; contains public Supabase and Turnstile site keys
 - **`VITE_BACKEND_READY`:** ❌ `false` — submissions intentionally disabled
 - **Local dev server:** Stopped after local testing
-- **Production build:** ✅ Passed (dist/ ready for GitHub Pages)
+- **Production build:** ✅ Passed and published through GitHub Actions
+- **Live site state:** Setup required; public data reads and intake remain disabled
 
 ---
 
@@ -95,8 +96,8 @@ gate only after:
 - [ ] **Complete end-to-end submission test** (synthetic submission with a valid Turnstile token; a prior attempt was rejected with 403)
 - [ ] **Authorize staff in `admin_users` table** (at least one trusted account)
 - [x] **Keep `VITE_BACKEND_READY=false`** in the GitHub Pages workflow until acceptance checks pass
-- [ ] **Configure GitHub Actions deployment variables** (Supabase URL, public key, and Turnstile site key)
-- [ ] **Deploy to GitHub Pages** and smoke-test on live URL
+- [x] **Publish updated review build to GitHub Pages** with intake explicitly disabled
+- [ ] **Enable public data reads** after confirming deployment variables and reviewing the public-read policy
 - [ ] **Document staff procedures** for review and publication workflows
 
 ---
@@ -137,8 +138,10 @@ approved, and the operations owner authorizes launch, change
 `VITE_BACKEND_READY=false` in `.github/workflows/deploy-pages.yml`. Until then,
 keep the GitHub Pages workflow forcing intake off.
 
-### 4. Deploy to GitHub Pages
-Push code and GitHub Actions will build and deploy to `https://aayukc7824-lab.github.io/relief-hub/`.
+### 4. Review the GitHub Pages build
+The updated review build is published at
+`https://aayukc7824-lab.github.io/relief-hub/`. The workflow explicitly forces
+intake off. Re-run deployment only after reviewing the source changes.
 
 ### 5. Final Smoke Test
 On the live URL:
