@@ -35,7 +35,7 @@ jobs:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
           VITE_TURNSTILE_SITE_KEY: ${{ vars.VITE_TURNSTILE_SITE_KEY }}
-          VITE_BACKEND_READY: ${{ vars.VITE_BACKEND_READY }}
+          VITE_BACKEND_READY: 'false'
         run: npm run build
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3

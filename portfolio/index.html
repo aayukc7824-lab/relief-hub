@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aayusha Khatiwada is a front-end developer building polished, responsive digital experiences with a product-focused approach."
+    />
+    <meta name="theme-color" content="#f6f4ff" />
+    <title>Aayusha Khatiwada | Front-End Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#home">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Aayusha Khatiwada, home">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>Aayusha <span class="brand-accent">K.</span></span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" />
+        </svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero section-wrap" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="status-dot"></span> FRONT-END DEVELOPER · PRODUCT-FOCUSED</p>
+          <h1 id="hero-title"><span data-content="hero.titleLine1">Thoughtful interfaces.</span><br /><span data-content="hero.titleLine2">Reliable delivery.</span></h1>
+          <p class="hero-intro" data-content="hero.intro">
+            I’m Aayusha, a front-end developer focused on building polished,
+            responsive digital experiences with clear business impact and
+            strong product thinking.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              Explore my projects <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-quiet" href="#contact">Let’s connect</a>
+          </div>
+          <div class="hero-socials" aria-label="Social links">
+            <a href="https://github.com/aayukc7824-lab" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <span class="social-divider" aria-hidden="true"></span>
+            <a
+              href="https://www.linkedin.com/in/aayusha-khatiwada-%F0%9F%87%B3%F0%9F%87%B5%F0%9F%A7%BF%E2%9C%85-23b82340b/"
+              target="_blank"
+              rel="noreferrer"
+            >LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art reveal" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-glow"></div>
+          <div class="code-card">
+            <div class="code-card-top"><span></span><span></span><span></span><small>about-me.js</small></div>
+            <pre><code><span class="code-accent">const</span> <span class="code-blue">developer</span> = {
+  name: <span class="code-green">"Aayusha"</span>,
+  focus: <span class="code-green">"Front-end"</span>,
+  tools: [
+    <span class="code-orange">"React"</span>,
+    <span class="code-orange">"JavaScript"</span>
+  ],
+  mindset: <span class="code-green">"keep learning"</span>
+};</code></pre>
+            <div class="code-card-footer"><span class="status-dot"></span> <span data-content="hero.availability">Available for product-focused roles</span></div>
+          </div>
+          <span class="float-chip chip-react">React</span>
+          <span class="float-chip chip-js">JS</span>
+          <span class="float-chip chip-css">CSS</span>
+        </div>
+        <a class="scroll-cue" href="#about"><span></span> Scroll to explore</a>
+      </section>
+
+      <section class="section-wrap about-section" id="about" aria-labelledby="about-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">A LITTLE ABOUT ME</p>
+          <h2 id="about-title">Curiosity that turns<br /><span>into something useful.</span></h2>
+        </div>
+        <div class="about-grid">
+          <article class="surface about-card reveal">
+            <div class="icon-tile" aria-hidden="true">✳</div>
+            <h3 data-content="about.heading">Front-end developer with a product mindset</h3>
+            <p data-content="about.paragraph1">
+              I build responsive, user-centered interfaces that turn complex
+              requirements into clear, practical experiences for clients and
+              end users.
+            </p>
+            <p data-content="about.paragraph2">
+              My work blends design thinking, front-end engineering, and
+              iterative improvement—creating interfaces that are usable,
+              maintainable, and ready for real-world product use.
+            </p>
+          </article>
+          <div class="about-side">
+            <article class="surface fact-card reveal">
+              <span class="fact-number">01</span>
+              <div><h3>Build with purpose</h3><p>Projects shaped around clear needs and real people.</p></div>
+            </article>
+            <article class="surface fact-card reveal">
+              <span class="fact-number">02</span>
+              <div><h3>Learn by doing</h3><p>Practice, feedback, iteration, and sharing the work.</p></div>
+            </article>
+            <article class="surface fact-card reveal">
+              <span class="fact-number">03</span>
+              <div><h3>Built for real work</h3><p>Product-driven implementation, iteration, and delivery.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-wrap education-section" id="education" aria-labelledby="education-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">MY FOUNDATION</p>
+          <h2 id="education-title">Education &amp; <span>practice.</span></h2>
+        </div>
+        <article class="surface education-card reveal">
+          <div class="education-mark" aria-hidden="true">A</div>
+          <div class="education-copy">
+            <p class="card-kicker">ACADEMIC BACKGROUND</p>
+            <h3>B.Sc. in Computer Science and Information Technology</h3>
+            <p>Amrit Science Campus · Tribhuvan University</p>
+          </div>
+          <span class="education-tag">CSIT</span>
+        </article>
+        <p class="section-note reveal">I combine academic fundamentals with hands-on product work to build useful, maintainable interfaces.</p>
+      </section>
+
+      <section class="section-wrap skills-section" id="skills" aria-labelledby="skills-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">TOOLS I WORK WITH</p>
+          <h2 id="skills-title">Skills in <span>production.</span></h2>
+          <p class="section-description">The tools I use to design, build, and refine product-ready interfaces.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="surface skill-card reveal"><span class="skill-symbol">&lt;/&gt;</span><h3>HTML &amp; CSS</h3><p>Semantic markup, responsive layouts, and styling.</p><span class="skill-focus">Web fundamentals</span></article>
+          <article class="surface skill-card reveal"><span class="skill-symbol">JS</span><h3>JavaScript</h3><p>Interactive behavior and modern web fundamentals.</p><span class="skill-focus">Interface behavior</span></article>
+          <article class="surface skill-card reveal"><span class="skill-symbol">⚛</span><h3>React</h3><p>Reusable components and state-driven interfaces.</p><span class="skill-focus">Component-based UI</span></article>
+          <article class="surface skill-card reveal"><span class="skill-symbol">⌘</span><h3>Git &amp; GitHub</h3><p>Version control and publishing project work.</p><span class="skill-focus">Version control</span></article>
+          <article class="surface skill-card reveal"><span class="skill-symbol">↔</span><h3>REST APIs</h3><p>Working with web APIs and application data.</p><span class="skill-focus">API fundamentals</span></article>
+          <article class="surface skill-card reveal"><span class="skill-symbol">V</span><h3>Vite</h3><p>Modern tooling for fast front-end development.</p><span class="skill-focus">Build tooling</span></article>
+        </div>
+        <p class="skill-disclaimer">I’m continuing to strengthen these skills through hands-on work.</p>
+      </section>
+
+      <section class="section-wrap projects-section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading section-heading-row reveal">
+          <div><p class="eyebrow">SELECTED WORK</p><h2 id="projects-title">Projects with <span>impact.</span></h2></div>
+          <span class="work-count">02 projects</span>
+        </div>
+        <div class="projects-grid">
+          <article class="surface project-card project-featured reveal">
+            <div class="project-visual relief-visual" aria-hidden="true">
+              <div class="visual-window">
+                <div class="visual-top"><span></span><span></span><span></span><b>BhoteKoshi Relief Hub</b></div>
+                <div class="visual-body"><span class="visual-label">COMMUNITY INFORMATION · NEPAL</span><strong>Find the right<br />next step.</strong><div class="visual-pills"><i>Emergency help</i><i>Community guidance</i></div></div>
+              </div>
+              <span class="visual-sticker">COMMUNITY<br />INFORMATION</span>
+            </div>
+            <div class="project-content">
+              <div class="project-meta"><span>OPERATIONAL PROJECT</span><span>01 / 02</span></div>
+              <h3 data-content="projects.reliefHub.title">BhoteKoshi Relief Hub</h3>
+              <p data-content="projects.reliefHub.description">
+                A responsive community information and reporting portal designed
+                for operational support, public updates, and structured
+                client-facing information flow across affected areas.
+              </p>
+              <ul class="tag-list" aria-label="Technologies used"><li>React</li><li>Vite</li><li>JavaScript</li><li>CSS</li></ul>
+              <div class="project-links">
+                <a class="text-link" href="https://aayukc7824-lab.github.io/relief-hub/" target="_blank" rel="noreferrer">Live site <span aria-hidden="true">↗</span></a>
+                <a class="text-link" href="https://github.com/aayukc7824-lab/relief-hub" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="surface project-card reveal">
+            <div class="project-visual deepscan-visual" aria-hidden="true">
+              <div class="scan-frame"><span class="scan-corner corner-tl"></span><span class="scan-corner corner-tr"></span><span class="scan-corner corner-bl"></span><span class="scan-corner corner-br"></span><div class="scan-orb">DS</div><div class="scan-line"></div><span class="scan-caption">MEDIA AUTHENTICITY · TEAM PROJECT</span></div>
+              <span class="scan-chip">AI / ML</span>
+            </div>
+            <div class="project-content">
+              <div class="project-meta"><span>RESEARCH TEAM</span><span>02 / 02</span></div>
+              <h3 data-content="projects.deepScan.title">DeepScan</h3>
+              <p data-content="projects.deepScan.description">
+                A team-based exploration into media authenticity and AI-assisted
+                verification workflows, focused on evaluating detection
+                approaches in a research and validation context.
+              </p>
+              <ul class="tag-list" aria-label="Project topic"><li>AI exploration</li><li>Image &amp; video</li><li>Team project</li></ul>
+              <a class="text-link project-note-link" href="https://www.linkedin.com/in/aayusha-khatiwada-%F0%9F%87%B3%F0%9F%87%B5%F0%9F%A7%BF%E2%9C%85-23b82340b/" target="_blank" rel="noreferrer">Connect for details <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="contact-inner section-wrap reveal">
+          <div><p class="eyebrow">HAVE AN OPPORTUNITY?</p><h2 id="contact-title">Let’s build something<br /><span>that matters.</span></h2><p>I’m open to product-focused front-end and web development opportunities, whether in Kathmandu or remotely.</p></div>
+          <div class="contact-actions">
+            <a
+              class="button button-light"
+              href="https://www.linkedin.com/in/aayusha-khatiwada-%F0%9F%87%B3%F0%9F%87%B5%F0%9F%A7%BF%E2%9C%85-23b82340b/"
+              target="_blank"
+              rel="noreferrer"
+            >Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="contact-github" href="https://github.com/aayukc7824-lab" target="_blank" rel="noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+          <span class="contact-orb contact-orb-one" aria-hidden="true"></span>
+          <span class="contact-orb contact-orb-two" aria-hidden="true"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark">&lt;/&gt;</span><span>Aayusha <span class="brand-accent">K.</span></span></a>
+      <p>Designed with care · Built for product work</p>
+      <span class="live-status" id="live-status" role="status" aria-live="polite"><span></span> Published portfolio</span>
+      <a href="#home" class="back-to-top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>

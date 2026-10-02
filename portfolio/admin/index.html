@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f4ff" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Portfolio editor | Aayusha Khatiwada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./admin.css" />
+    <script type="module" src="./admin.js"></script>
+  </head>
+  <body>
+    <header class="site-header editor-header">
+      <a class="brand" href="../" aria-label="Return to portfolio">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>Aayusha <span class="brand-accent">K.</span></span>
+      </a>
+      <a class="editor-back" href="../">View portfolio <span aria-hidden="true">↗</span></a>
+    </header>
+    <main class="editor-wrap">
+      <section class="editor-intro">
+        <p class="eyebrow">PRIVATE WORKSPACE</p>
+        <h1>Portfolio <span>editor.</span></h1>
+        <p>Sign in to update your profile. Saved edits appear on the public portfolio as they happen.</p>
+      </section>
+      <p class="editor-message" id="editor-message" role="status" aria-live="polite"></p>
+      <form class="editor-login surface" id="login-form" hidden>
+        <h2>Sign in</h2>
+        <p>Use the email and password for your approved portfolio editor account.</p>
+        <label>Email address<input name="email" type="email" autocomplete="username" required maxlength="254" /></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required /></label>
+        <button class="button button-primary" type="submit">Sign in to edit</button>
+      </form>
+      <form class="editor-form" id="portfolio-form" hidden>
+        <div class="editor-toolbar">
+          <div><span class="editor-connected-dot" id="editor-connection-dot"></span><span id="editor-connection">Checking live connection…</span></div>
+          <button class="button button-quiet editor-signout" id="signout-button" type="button">Sign out</button>
+        </div>
+        <section class="editor-group surface">
+          <h2>Introduction</h2>
+          <label>Headline, first line<input name="hero.titleLine1" maxlength="60" required /></label>
+          <label>Headline, second line<input name="hero.titleLine2" maxlength="60" required /></label>
+          <label>Short introduction<textarea name="hero.intro" rows="3" maxlength="320" required></textarea></label>
+          <label>Availability note<input name="hero.availability" maxlength="100" required /></label>
+        </section>
+        <section class="editor-group surface">
+          <h2>About me</h2>
+          <label>Section heading<input name="about.heading" maxlength="100" required /></label>
+          <label>First paragraph<textarea name="about.paragraph1" rows="4" maxlength="800" required></textarea></label>
+          <label>Second paragraph<textarea name="about.paragraph2" rows="4" maxlength="800" required></textarea></label>
+        </section>
+        <section class="editor-group surface">
+          <h2>BhoteKoshi Relief Hub</h2>
+          <label>Project title<input name="projects.reliefHub.title" maxlength="100" required /></label>
+          <label>Project description<textarea name="projects.reliefHub.description" rows="4" maxlength="800" required></textarea></label>
+        </section>
+        <section class="editor-group surface">
+          <h2>DeepScan</h2>
+          <label>Project title<input name="projects.deepScan.title" maxlength="100" required /></label>
+          <label>Project description<textarea name="projects.deepScan.description" rows="4" maxlength="800" required></textarea></label>
+        </section>
+        <div class="editor-actions">
+          <p>Visitors connected to the live portfolio receive published changes automatically.</p>
+          <button class="button button-primary" id="save-button" type="submit">Save and publish</button>
+        </div>
+      </form>
+      <p class="editor-setup" id="setup-note" hidden>
+        The live editor is not connected yet. Finish the Supabase setup described in the project README, then refresh this page.
+      </p>
+    </main>
+  </body>
+</html>

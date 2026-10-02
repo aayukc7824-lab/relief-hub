@@ -82,9 +82,9 @@ export default function VolunteerOffers() {
         <p className="eyebrow">DONATE &amp; VOLUNTEER</p>
         <h2>Offer help to local response efforts</h2>
         <p>
-          Tell us what you can offer and where. An authorized administrator
-          reviews offers before following up. This form does not accept money
-          or arrange field deployments.
+          When secure intake is enabled, offers are routed to authorized staff
+          for review before follow-up. This form does not accept money or
+          arrange field deployments.
         </p>
       </div>
 

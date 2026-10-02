@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { ArrowRight, FileWarning, Phone, Users } from 'lucide-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowRight, FileWarning, Plus, Phone, Search, Users, X } from 'lucide-react';
 import TurnstileField from './TurnstileField';
 import { backendReady, supabase } from '../lib/supabase';
 
@@ -42,6 +42,9 @@ export default function MissingReports() {
   const [noticesLoading, setNoticesLoading] = useState(Boolean(supabase));
   const [noticesError, setNoticesError] = useState('');
   const [search, setSearch] = useState('');
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+  const openModalButton = useRef(null);
+  const closeModalButton = useRef(null);
 
   useEffect(() => {
     if (!supabase) return undefined;
@@ -51,7 +54,7 @@ export default function MissingReports() {
       setNoticesLoading(true);
       setNoticesError('');
       const { data, error } = await supabase
-        .from('active_missing_notices')
+        .from('missing_persons')
         .select('id, public_name, district, approximate_area, last_seen_on, last_verified_at')
         .order('last_verified_at', { ascending: false });
 
@@ -70,6 +73,22 @@ export default function MissingReports() {
       active = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!reportModalOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeModalButton.current?.focus();
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') setReportModalOpen(false);
+    }
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', closeOnEscape);
+      openModalButton.current?.focus();
+    };
+  }, [reportModalOpen]);
 
   const handleToken = useCallback((token) => {
     setTurnstileToken(token);
@@ -151,8 +170,9 @@ export default function MissingReports() {
         <p className="eyebrow">MISSING &amp; REUNIFICATION</p>
         <h2>Missing person reports</h2>
         <p>
-          Reports go to an administrator for private review. A public notice is
-          never automatic and requires separate permission and verification.
+          The reporting workflow is designed for private staff review. A public
+          notice is never automatic and requires separate permission and
+          verification.
         </p>
       </div>
 
@@ -165,21 +185,35 @@ export default function MissingReports() {
       </div>
 
       <div className="notice-list">
-        <div className="subsection-heading">
-          <h3>Recently verified public notices</h3>
-          <p>Contact police directly with information. Contact details are never shown here.</p>
+        <div className="registry-heading">
+          <div className="subsection-heading">
+            <h3>Missing persons registry</h3>
+            <p>Only recent, administrator-verified public notices appear here. Contact police directly with information.</p>
+          </div>
+          <button
+            ref={openModalButton}
+            className="button button-primary"
+            type="button"
+            onClick={() => {
+              setMessage(null);
+              setReportModalOpen(true);
+            }}
+          >
+            <Plus size={17} aria-hidden="true" />
+            Submit a report
+          </button>
         </div>
-        {notices.length > 0 && (
-          <label className="notice-search">
-            Search public notices
-            <input
-              type="search"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Name, district, or area"
-            />
-          </label>
-        )}
+        <label className="registry-search-input">
+          <Search size={18} aria-hidden="true" />
+          <span className="sr-only">Search public notices by name, district, or area</span>
+          <input
+            type="search"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Search by name, district, or area"
+            aria-label="Search public notices by name, district, or area"
+          />
+        </label>
         {!supabase && (
           <div className="empty-state">
             <Users size={22} aria-hidden="true" />
@@ -221,11 +255,34 @@ export default function MissingReports() {
         )}
       </div>
 
-      <form className="submission-form" onSubmit={submitReport}>
-        <div className="subsection-heading">
-          <h3>Submit a report</h3>
-          <p>Enter only information needed to identify the person and contact you.</p>
-        </div>
+      {reportModalOpen && (
+        <div
+          className="modal-backdrop"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setReportModalOpen(false);
+          }}
+        >
+          <section className="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+            <div className="report-modal-heading">
+              <div className="subsection-heading">
+                <h3 id="report-modal-title">Submit a missing-person report</h3>
+                <p>Information is private and routed for staff review when secure intake is active.</p>
+              </div>
+              <button
+                ref={closeModalButton}
+                className="modal-close-button"
+                type="button"
+                aria-label="Close report form"
+                onClick={() => setReportModalOpen(false)}
+              >
+                <X size={20} aria-hidden="true" />
+              </button>
+            </div>
+            <form className="submission-form report-modal-form" onSubmit={submitReport}>
+              <div className="subsection-heading">
+                <h4>Report details and your contact information</h4>
+                <p>Enter only information needed to identify the person and contact you.</p>
+              </div>
         {!backendReady && <SetupNotice />}
         <fieldset disabled={!backendReady || isSubmitting}>
           <legend className="form-legend">Report information and your contact details</legend>
@@ -306,7 +363,10 @@ export default function MissingReports() {
             {message.text}
           </p>
         )}
-      </form>
+            </form>
+          </section>
+        </div>
+      )}
     </section>
   );
 }

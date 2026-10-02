@@ -1,6 +1,6 @@
 # BhoteKoshi Relief Hub — Backend Configuration Status
 
-**Last Updated:** 2026-10-01 22:54 UTC+5:45  
+**Last Updated:** 2026-10-02
 **Status:** ✅ Secure setup complete; **submissions remain disabled pending authorization**
 
 ---
@@ -13,10 +13,11 @@
 - **Region:** ap-northeast-1 (Tokyo)  
 - **Database:** PostgreSQL 17.11.0.002  
 - **Status:** Active and healthy
+- **Migration history:** All three repository migrations are recorded as applied. The remote schema already existed and was verified before its migration ledger was reconciled; no schema migration was re-executed.
 
 ### Authentication (Auth)
 - **Public user sign-ups:** ❌ **Disabled**  
-- **Staff authorization:** Ready (add trusted accounts to `public.admin_users` table)
+- **Staff authorization:** No Relief Hub admin account has been authorized yet. Add an existing `auth.users.id` to `public.admin_users` only after confirming the person is trusted.
 - **Automatic session management:** Configured
 
 ### Edge Functions (Deployed)
@@ -42,7 +43,7 @@ All three required server-side secrets are configured and masked:
 | `RATE_LIMIT_HASH_SECRET` | ✅ Fresh | 2026-10-01 15:11 UTC |
 | `ALLOWED_ORIGINS` | ✅ Set | 2026-10-01 15:10 UTC |
 
-**Note:** Turnstile secret was rotated and replaced after an initial rotation exposure; old secret valid for 2 hours during transition. Ensure new secret in Cloudflare matches the one configured here.
+**Note:** The secret was rotated after an initial exposure. A local synthetic submission was rejected with HTTP 403 by Turnstile, and no test record was stored. The active secret was rechecked by the project owner; a successful end-to-end submission is still pending.
 
 ### Cloudflare Turnstile
 - **Widget ID:** `0x4AAAAAAFLLuj7PAEecRMdd`
@@ -55,7 +56,7 @@ All three required server-side secrets are configured and masked:
 ### Frontend Configuration
 - **`.env` file:** Git-ignored; contains public Supabase and Turnstile site keys
 - **`VITE_BACKEND_READY`:** ❌ `false` — submissions intentionally disabled
-- **Local dev server:** Running and responsive
+- **Local dev server:** Stopped after local testing
 - **Production build:** ✅ Passed (dist/ ready for GitHub Pages)
 
 ---
@@ -70,7 +71,9 @@ The web forms explicitly show:
 
 **Why:** To prevent accidental live intake before staff review processes are in place.
 
-**To enable:** Set `VITE_BACKEND_READY=true` in the frontend after:
+**To enable:** The GitHub Pages deployment workflow currently forces
+`VITE_BACKEND_READY=false`. An authorized owner should change that workflow
+gate only after:
 1. ✅ Staff authorization table is populated
 2. ✅ Private staff review workflows are tested
 3. ✅ Public notice publication policy is approved
@@ -80,7 +83,7 @@ The web forms explicitly show:
 ## 📋 Pre-Launch Checklist
 
 - [x] Supabase project created and linked
-- [x] Database schema migrations prepared
+- [x] Existing database schema verified; all three migration versions recorded as applied
 - [x] Public sign-ups disabled
 - [x] Both Edge Functions deployed and active
 - [x] CORS correctly configured and tested
@@ -89,10 +92,10 @@ The web forms explicitly show:
 - [x] Rate limiting function deployed
 - [x] Frontend production build passes
 - [x] Local `.env` configured with public keys only
-- [ ] **Run end-to-end submission test** (synthetic submission with real Turnstile token)
+- [ ] **Complete end-to-end submission test** (synthetic submission with a valid Turnstile token; a prior attempt was rejected with 403)
 - [ ] **Authorize staff in `admin_users` table** (at least one trusted account)
-- [ ] **Set `VITE_BACKEND_READY=true`** in frontend config
-- [ ] **Configure GitHub Actions deployment variables** (4 vars: URL, key, site key, flag)
+- [x] **Keep `VITE_BACKEND_READY=false`** in the GitHub Pages workflow until acceptance checks pass
+- [ ] **Configure GitHub Actions deployment variables** (Supabase URL, public key, and Turnstile site key)
 - [ ] **Deploy to GitHub Pages** and smoke-test on live URL
 - [ ] **Document staff procedures** for review and publication workflows
 
@@ -105,7 +108,7 @@ The web forms explicitly show:
 3. **Submissions are rate-limited** by IP address using HMAC-SHA256 hashing (not stored).
 4. **Turnstile verification is required** for every submission; failed verification returns 403.
 5. **CORS is strict** and allows only configured origins.
-6. **Production data is empty** until staff intentionally publish verified notices.
+6. No synthetic test report was found in the database after the rejected attempt. Verify operational records only through authorized staff review.
 
 ---
 
@@ -119,15 +122,20 @@ Run a synthetic missing-person report submission from `http://localhost:5173`:
 - Check Supabase table `missing_reports` for the test entry
 
 ### 2. Populate Staff Authorization
-In Supabase SQL Editor:
+After inviting the trusted staff member and verifying their account exists in Supabase Auth, run:
 ```sql
-INSERT INTO public.admin_users (email, created_at)
-VALUES ('your-trusted-email@example.com', now());
+INSERT INTO public.admin_users (user_id)
+SELECT id FROM auth.users
+WHERE email = 'trusted-staff@example.com'
+ON CONFLICT (user_id) DO NOTHING;
 ```
-Commit this after verifying the user account exists in Supabase Auth.
+Confirm exactly one authorized account is present before enabling staff workflows.
 
 ### 3. Enable Frontend Submissions
-Set `VITE_BACKEND_READY=true` in your local `.env` and in GitHub Actions variables.
+After end-to-end testing passes, staff access and review procedures are
+approved, and the operations owner authorizes launch, change
+`VITE_BACKEND_READY=false` in `.github/workflows/deploy-pages.yml`. Until then,
+keep the GitHub Pages workflow forcing intake off.
 
 ### 4. Deploy to GitHub Pages
 Push code and GitHub Actions will build and deploy to `https://aayukc7824-lab.github.io/relief-hub/`.
@@ -154,4 +162,4 @@ On the live URL:
 | Date | Status | Action |
 |------|--------|--------|
 | 2026-10-01 | ✅ Deployed | All functions online; secrets configured; frontend disabled |
-
+| 2026-10-02 | ⚠️ Pending test | Verified existing schema and reconciled migration history; Turnstile rejected the local synthetic attempt; no test record stored |

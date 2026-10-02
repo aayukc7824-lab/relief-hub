@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { LogOut, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, LogOut, ShieldAlert } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 const districts = ['Rasuwa', 'Nuwakot', 'Dhading'];
@@ -122,7 +122,7 @@ function PublishNoticeForm({ report, onPublish }) {
   );
 }
 
-export default function AdminView() {
+export default function AdminView({ onReturnToOverview }) {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(Boolean(supabase));
   const [adminState, setAdminState] = useState('checking');
@@ -346,15 +346,37 @@ export default function AdminView() {
 
   if (!supabase) {
     return (
-      <section className="camp-page admin-page">
-        <div className="camp-heading">
-          <p className="eyebrow">STAFF AREA</p>
-          <h2>Administration</h2>
-          <p>Connect the Supabase project before staff can sign in.</p>
+      <section className="camp-page admin-page admin-unavailable-page">
+        <div className="admin-unavailable">
+          <div className="admin-unavailable-main">
+            <span className="admin-unavailable-icon"><ShieldAlert size={22} aria-hidden="true" /></span>
+            <p className="eyebrow">PRIVATE STAFF CONSOLE</p>
+            <h2>Staff access is not connected</h2>
+            <p>
+              Secure sign-in and private report review are unavailable until
+              the backend is configured and tested. Online submissions remain
+              disabled in the meantime.
+            </p>
+            <span className="status-pill status-pill-pending"><span aria-hidden="true"></span>Setup required</span>
+            <button className="button button-outline" type="button" onClick={onReturnToOverview}>
+              <ArrowLeft size={16} aria-hidden="true" />
+              Return to overview
+            </button>
+          </div>
+          <aside className="admin-setup-panel">
+            <p className="eyebrow">BEFORE ACTIVATION</p>
+            <h3>Operational readiness checklist</h3>
+            <ol>
+              <li>Connect and secure the project database.</li>
+              <li>Configure abuse protection for public forms.</li>
+              <li>Grant staff access to authorized accounts only.</li>
+              <li>Test submission, review, and publication end to end.</li>
+            </ol>
+            <p className="admin-setup-caution">
+              Do not collect or publish personal information until each step is complete.
+            </p>
+          </aside>
         </div>
-        <p className="backend-notice">
-          Administrator access is unavailable until backend configuration is complete.
-        </p>
       </section>
     );
   }
